@@ -1,2 +1,2 @@
-# hello-world
-This is my first project on github.
+# todo list
+This is a demo that based on Node, Express, MongoDB.
