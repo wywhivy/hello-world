@@ -1,0 +1,16 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "This is a TODO list demo that based on Node, Express, MongoDB.",
+  "scripts": {
+    "mongod": "node mongod.js",
+    "start": "node app.js"
+  },
+  "author": "Ivy Yang",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24"
+  }
+}
