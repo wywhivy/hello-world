@@ -79,16 +79,14 @@ $(function () {
     function _bindEvents($tr, id) {
         if (id) {
             $("input", $tr).change(function () {
-                var $children = $tr.children();
-                post_update({ _id: id, title: $children[0].children[0].value, isFinished: $children[1].children[0].checked });
+                post_update({ _id: id, title: $("input[type=text]", $tr).val(), isFinished: $("input[type=checkbox]", $tr).prop("checked") });
             });
             $("span", $tr).click(function () {
                 post_delete({ _id: id });
             });
         } else {
             $("span", $tr).click(function () {
-                var $children = $tr.children();
-                post_insert({ title: $children[0].children[0].value, isFinished: $children[1].children[0].checked });
+                post_insert({ title: $("input[type=text]", $tr).val(), isFinished: $("input[type=checkbox]", $tr).prop("checked") });
             });
         }
     }
