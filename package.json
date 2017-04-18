@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This is a TODO list demo that based on Node, Express, MongoDB.",
   "scripts": {
-    "mongod": "node mongod.js",
     "start": "node app.js"
   },
   "author": "Ivy Yang",
