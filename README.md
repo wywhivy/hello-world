@@ -27,4 +27,6 @@ mongod
 
 4. start the application
 
+npm run build
+
 npm start
