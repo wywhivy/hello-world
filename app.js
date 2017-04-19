@@ -30,7 +30,13 @@ app.get('/find', function (req, res) {
   });
 });
 
-app.use(express.static('public'));
+app.get('/node_modules/*', function (req, res) {
+  var filepath = require('path').join(__dirname, req.url);
+  res.sendFile(filepath);
+  console.log(filepath);
+});
+
+app.use(express.static('src'));
 
 var server = app.listen(3000, function () {
   var serverAddress = server.address();
