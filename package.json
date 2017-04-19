@@ -1,7 +1,7 @@
 {
   "name": "todolist",
   "version": "1.0.0",
-  "description": "This is a TODO list demo that based on Node, Express, MongoDB.",
+  "description": "This is a TODO list demo that based on Node, Express, MongoDB, Angular.",
   "scripts": {
     "build": "tsc -p src/",
     "start": "node app.js"
