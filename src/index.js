@@ -30,9 +30,10 @@ $(function () {
             var props = ["title", "isFinished", ""];
             var $table = $("#container").empty();
             $table.append(_createTableHeader(props));
-            $table.append(_createTableBody(data.concat([{ title: "", isFinished: false }]), props));
+            $table.append(_createTableBody(data.concat([{title: "", isFinished: false}]), props));
         });
     }
+
     function _createTableHeader(props) {
         var $thead = $("<thead></thead>");
         var $tr = $("<tr></tr>");
@@ -46,9 +47,11 @@ $(function () {
         $thead.append($tr);
         return $thead;
     }
+
     function _capitalizeFirstLetter(str) {
         return str[0].toUpperCase() + str.substr(1);
     }
+
     function _createTableBody(data, props) {
         var $tbody = $("<tbody></tbody>");
         for (var i = 0; i < data.length; i++) {
@@ -76,17 +79,25 @@ $(function () {
         }
         return $tbody;
     }
+
     function _bindEvents($tr, id) {
         if (id) {
             $("input", $tr).change(function () {
-                post_update({ _id: id, title: $("input[type=text]", $tr).val(), isFinished: $("input[type=checkbox]", $tr).prop("checked") });
+                post_update({
+                    _id: id,
+                    title: $("input[type=text]", $tr).val(),
+                    isFinished: $("input[type=checkbox]", $tr).prop("checked")
+                });
             });
             $("span", $tr).click(function () {
-                post_delete({ _id: id });
+                post_delete({_id: id});
             });
         } else {
             $("span", $tr).click(function () {
-                post_insert({ title: $("input[type=text]", $tr).val(), isFinished: $("input[type=checkbox]", $tr).prop("checked") });
+                post_insert({
+                    title: $("input[type=text]", $tr).val(),
+                    isFinished: $("input[type=checkbox]", $tr).prop("checked")
+                });
             });
         }
     }

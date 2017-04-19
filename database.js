@@ -1,12 +1,13 @@
 var mongodb = require("mongodb");
 
-function executeCommand(command, callback, ...args) {
+function executeCommand(command, callback) {
+    var args = Array.prototype.slice.call(arguments, 2);
     var MongoClient = mongodb.MongoClient;
     // Connection URL 
     var url = 'mongodb://127.0.0.1:27017/todos';
     // Use connect method to connect to the Server 
     MongoClient.connect(url, function (err, db) {
-        command(db.collection("todos"), callback, ...args);
+        command.apply(null, [db.collection("todos"), callback].concat(args));
         db.close();
     });
 }

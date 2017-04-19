@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>todo list</title>
     <base href="/">
     <meta charset="UTF-8">
@@ -21,14 +21,15 @@
 
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('main.js').catch(function(err){ console.error(err); });
+        System.import('main.js').catch(function (err) {
+            console.error(err);
+        });
     </script>
-  </head>
+</head>
 
-  <body>
-    <my-app>Loading AppComponent content here ...</my-app>
+<body>
+<my-app>Loading AppComponent content here ...</my-app>
 
-    <h1>TODO List</h1>
-    <table id="container" class="table table-striped table-bordered"></table>
-  </body>
+<table id="container" class="table table-striped table-bordered"></table>
+</body>
 </html>
