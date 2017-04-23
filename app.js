@@ -1,24 +1,26 @@
 var database = require('./database');
 var express = require('express');
 var bodyParser = require('body-parser');
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({extended: false});
+// create application/json parser
+var jsonParser = bodyParser.json();
+//// create application/x-www-form-urlencoded parser
+// var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 var app = express();
 
-app.post('/insert', urlencodedParser, function (req, res) {
+app.post('/insert', jsonParser, function (req, res) {
     database.insert(req.body, function (err, result) {
         res.send(err || result);
     });
 });
 
-app.post('/update', urlencodedParser, function (req, res) {
+app.post('/update', jsonParser, function (req, res) {
     database.update(req.body, function (err, result) {
         res.send(err || result);
     });
 });
 
-app.post('/delete', urlencodedParser, function (req, res) {
+app.post('/delete', jsonParser, function (req, res) {
     database.delete(req.body, function (err, result) {
         res.send(err || result);
     });
@@ -33,7 +35,7 @@ app.get('/find', function (req, res) {
 app.get('/node_modules/*', function (req, res) {
     var filepath = require('path').join(__dirname, req.url);
     res.sendFile(filepath);
-    console.log(filepath);
+    // console.log(filepath);
 });
 
 app.use(express.static('src'));

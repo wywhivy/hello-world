@@ -5,3 +5,5 @@ src/main.js.map
 src/main.js
 src/app/*.map
 src/app/*.js
+src/app/todo/*.js
+src/app/todo/*.js.map
