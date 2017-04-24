@@ -6,11 +6,12 @@ import { TodoService } from './todo.service';
 @Component({
     selector: 'todo-list',
     template: `
-    <ul>
+    <ol>
         <li *ngFor="let todo of todos">
-            <todo [todo]="todo" (updateRequest)="updateTodo($event)"></todo>
+            <todo [todo]="todo" (updateRequest)="updateTodo(todo)" (deleteRequest)="deleteTodo(todo)"></todo>
         </li>
-    </ul>`,
+        <todo (insertRequest)="insertTodo($event)"></todo>
+    </ol>`,
     providers: [TodoService],
 })
 export class TodoListComponent {
@@ -30,5 +31,17 @@ export class TodoListComponent {
 
     updateTodo(todo: Todo) {
         this.todoService.update(todo);
+    }
+
+    deleteTodo(todo: Todo) {
+        this.todoService.delete(todo);
+
+        var index = this.todos.indexOf(todo);
+        this.todos.splice(index, 1);
+    }
+
+    insertTodo(todo: Todo) {
+        this.todoService.insert(todo);
+        this.getTodos();
     }
 }

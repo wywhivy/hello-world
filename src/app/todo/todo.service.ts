@@ -16,8 +16,19 @@ export class TodoService {
             .catch(this.handleError);;
     }
     update(todo: Todo): Promise<Todo> {
-        return this.http
-            .post('update', todo)
+        return this.http.post('update', todo)
+            .toPromise()
+            .then(() => todo)
+            .catch(this.handleError);
+    }
+    delete(todo: Todo): Promise<Todo> {
+        return this.http.post('delete', todo)
+            .toPromise()
+            .then(() => todo)
+            .catch(this.handleError);
+    }
+    insert(todo: Todo): Promise<Todo> {
+        return this.http.post('insert', todo)
             .toPromise()
             .then(() => todo)
             .catch(this.handleError);
