@@ -9,7 +9,7 @@ import { Todo } from './todo';
 export class TodoService {
     constructor(private http: Http) { }
 
-    getTodos(): Promise<Todo[]> {
+    findAll(): Promise<Todo[]> {
         return this.http.get('find')
             .toPromise()
             .then(response => response.json() as Todo[])
@@ -35,7 +35,6 @@ export class TodoService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
 }

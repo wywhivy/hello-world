@@ -1,10 +1,8 @@
 var database = require('./database');
 var express = require('express');
 var bodyParser = require('body-parser');
-// create application/json parser
-var jsonParser = bodyParser.json();
-//// create application/x-www-form-urlencoded parser
-// var urlencodedParser = bodyParser.urlencoded({extended: false});
+var jsonParser = bodyParser.json();//application/json parser
+// var urlencodedParser = bodyParser.urlencoded({extended: false});//application/x-www-form-urlencoded parser
 
 var app = express();
 
@@ -35,7 +33,6 @@ app.get('/find', function (req, res) {
 app.get('/node_modules/*', function (req, res) {
     var filepath = require('path').join(__dirname, req.url);
     res.sendFile(filepath);
-    // console.log(filepath);
 });
 
 app.use(express.static('src'));

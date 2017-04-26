@@ -21,27 +21,35 @@ export class TodoListComponent {
 
     }
 
-    private getTodos() {
-        this.todoService.getTodos().then(todos => this.todos = todos);
-    }
-
     ngOnInit(): void {
         this.getTodos();
     }
 
-    updateTodo(todo: Todo) {
-        this.todoService.update(todo);
+    private getTodos() {
+        var self = this;
+        self.todoService.findAll().then(function (todos) {
+            self.todos = todos;
+        });
     }
 
-    deleteTodo(todo: Todo) {
-        this.todoService.delete(todo);
-
-        var index = this.todos.indexOf(todo);
-        this.todos.splice(index, 1);
+    private updateTodo(todo: Todo) {
+        var self = this;
+        self.todoService.update(todo).then(function () {
+            self.getTodos();
+        });
     }
 
-    insertTodo(todo: Todo) {
-        this.todoService.insert(todo);
-        this.getTodos();
+    private deleteTodo(todo: Todo) {
+        var self = this;
+        self.todoService.delete(todo).then(function () {
+            self.getTodos();
+        });
+    }
+
+    private insertTodo(todo: Todo) {
+        var self = this;
+        self.todoService.insert(todo).then(function () {
+            self.getTodos();
+        });
     }
 }

@@ -6,11 +6,11 @@ import { Todo } from './todo';
     selector: 'todo',
     template: `
         <input #prop1 type="checkbox" [checked]="todo?.isFinished" (change)="onIsFinishedChanged(prop1.checked)"/>
-        <input #prop2 type="text" class="editableContent" [value]="todo?.title" (change)="onTitleChanged(prop2.value)"/>
+        <input #prop2 type="text" class="editable" [value]="todo?.title" (change)="onTitleChanged(prop2.value)"/>
         <input *ngIf="todo==null" class="insertButton" type="button" value="+" (click)="onInserted(prop1, prop2)"/>
         <input *ngIf="todo!=null" class="deleteButton" type="button" value="X" (click)="onDeleted()"/>`,
     styles: [`
-        .editableContent {
+        .editable {
             border: none;
             border-bottom: 1px solid lightgray;
             outline: none;
@@ -35,11 +35,11 @@ export class TodoComponent {
     @Output() insertRequest = new EventEmitter<Todo>();
     @Output() deleteRequest = new EventEmitter<Todo>();
 
-    onUpdated() {
+    private onUpdated() {
         this.updateRequest.emit(this.todo);
     }
 
-    onInserted(prop1: any, prop2: any) {
+    private onInserted(prop1: any, prop2: any) {
         var todo = new Todo(prop2.value, prop1.checked);
         this.insertRequest.emit(todo);
 
@@ -47,19 +47,19 @@ export class TodoComponent {
         prop2.value = "";
     }
 
-    onDeleted() {
+    private onDeleted() {
         this.deleteRequest.emit(this.todo);
     }
 
-    onIsFinishedChanged(newValue: boolean) {
-        if (this.todo != null) {
+    private onIsFinishedChanged(newValue: boolean) {
+        if (this.todo) {
             this.todo.isFinished = newValue;
             this.onUpdated();
         }
     }
 
-    onTitleChanged(newValue: string) {
-        if (this.todo != null) {
+    private onTitleChanged(newValue: string) {
+        if (this.todo) {
             this.todo.title = newValue;
             this.onUpdated();
         }
