@@ -10,12 +10,13 @@ import { TodoService } from './todo.service';
         <li *ngFor="let todo of todos">
             <todo [todo]="todo" (updateRequest)="updateTodo(todo)" (deleteRequest)="deleteTodo(todo)"></todo>
         </li>
-        <todo (insertRequest)="insertTodo($event)"></todo>
+        <new-todo *ngIf="newTodo!=null" [todo]="newTodo" (insertRequest)="insertTodo($event)"></new-todo>
     </ol>`,
     providers: [TodoService],
 })
 export class TodoListComponent {
     todos: Todo[];
+    newTodo: Todo;
 
     constructor(private todoService: TodoService) {
 
@@ -29,6 +30,7 @@ export class TodoListComponent {
         var self = this;
         self.todoService.findAll().then(function (todos) {
             self.todos = todos;
+            self.newTodo = new Todo("", false);
         });
     }
 
